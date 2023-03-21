@@ -134,3 +134,22 @@ a.active {
 .cart {
   height: calc(10px + 2vmin);
 }
+
+/*********************/
+.product-detail {
+  flex-direction: row;
+}
+.product-detail,
+.product-detail > * {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.product-detail-description {
+  font-size: 16px;
+}
+
+.product-detail-description > table > tr > td:nth-child(odd) {
+  font-weight: bold;
+}
