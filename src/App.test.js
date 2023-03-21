@@ -1,8 +1,12 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
+import routes from './config/routes';
+import TestProviders from './setupTests';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe('App tests', () => {
+  test('show header checking by breadcrumb', () => {
+    render(<App />, { wrapper: TestProviders });
+    const linkElement = screen.getByText(routes.PRODUCTS.name);
+    expect(linkElement).toBeInTheDocument();
+  });
 });
