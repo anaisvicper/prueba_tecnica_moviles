@@ -63,6 +63,20 @@
   overflow: auto;
 }
 
+.search-container {
+  display: flex;
+  flex-grow: 1;
+  align-content: flex-end;
+  justify-content: flex-end;
+  padding: 16px;
+}
+.search {
+  display: flex;
+  border: 2px solid #282c34;
+  height: 40px;
+  width: 200px;
+}
+
 /** Loading **/
 .loading {
   height: 40vmin;

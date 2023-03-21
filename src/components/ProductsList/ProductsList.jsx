@@ -1,13 +1,26 @@
 import '../../App.css';
 import mockList from './mock';
 import Item from './Item';
+import ProductListContextProvider, {
+  ProductListContext,
+} from '../ProductListContext';
+import Search from '../Search';
+import { useContext } from 'react';
 
-const ProductsList = () => {
+const ProductListContainer = () => {
+  return (
+    <ProductListContextProvider list={mockList} filterBy={['brand', 'model']}>
+      <ProductList></ProductList>
+    </ProductListContextProvider>
+  );
+};
+const ProductList = () => {
+  const { filteredList } = useContext(ProductListContext);
   return (
     <div className="product-list-container">
-      <div>Lista de productos</div>
+      <Search placehoderFields="marca y modelo" />
       <div className="product-list">
-        {mockList.map((item) => (
+        {filteredList.map((item) => (
           <Item key={item.id} item={item}></Item>
         ))}
       </div>
@@ -15,4 +28,4 @@ const ProductsList = () => {
   );
 };
 
-export default ProductsList;
+export default ProductListContainer;
