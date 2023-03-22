@@ -1,6 +1,6 @@
 import { NavLink, generatePath, useParams } from 'react-router-dom';
 import '../App.css';
-import useGetActiveRouteAndTree from '../hooks/useGetActiveRouteAndTree';
+import useGetActiveRouteAndTree from '../../hooks/useGetActiveRouteAndTree';
 
 const BreadCrumb = () => {
   const { activeRouteTree } = useGetActiveRouteAndTree();

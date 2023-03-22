@@ -1,9 +1,9 @@
 import { Routes, Route, Outlet, Navigate } from 'react-router-dom';
 import './App.css';
-import Header from './components/Header/Header';
-import ProductDetail from './components/ProductDetail';
-import ProductsList from './components/ProductsList';
-import routes from './config/routes';
+import Header from './Header/Header';
+import ProductDetail from './ProductDetail';
+import ProductsList from './ProductsList';
+import routes from '../config/routes';
 
 const AppBase = () => (
   <div className="App">

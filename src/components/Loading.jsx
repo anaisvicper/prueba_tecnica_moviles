@@ -1,5 +1,5 @@
 import logoReact from '../images/logo_react.svg';
-import '../App.css';
+import './App.css';
 
 const Loading = () => (
   <div className="loading-container">
