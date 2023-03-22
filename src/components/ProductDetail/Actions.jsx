@@ -2,20 +2,28 @@ import '../App.css';
 import routes from '../../config/routes';
 import { NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { addProductToCart } from '../../store/detail/api';
+import { addProductToCart } from '../../store/detail/detailSlice';
+import ProductOptionSelect from './ProductOptionSelect';
+import { useDispatch } from 'react-redux';
 
 const CURRENCY = '€';
 const Actions = ({ product }) => {
   const [selectedStorageCode, setSelectedStorageCode] = useState();
   const [selectedColor, setSelectedColor] = useState();
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    if (product.options.storages.length === 1) {
-      setSelectedStorageCode(product.options.storages[0].code);
+    const options = product.options;
+    if (!!options) {
+      const { storages, colors } = options;
+      if (storages?.length === 1) {
+        setSelectedStorageCode(storages[0].code);
+      }
+      if (colors?.length === 1) {
+        setSelectedColor(colors[0].code);
+      }
     }
-    if (product.options.colors.length === 1) {
-      setSelectedColor(product.options.colors[0].code);
-    }
-  }, [product.options.storages, product.options.colors]);
+  }, [product]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -26,7 +34,7 @@ const Actions = ({ product }) => {
         colorCode: selectedColor,
         storageCode: selectedStorageCode,
       };
-      addProductToCart(data)
+      dispatch(addProductToCart(data))
         .then(({ count }) => {
           console.log('Añadido al carrito', data);
           console.log('Elementos en carrito', count);
@@ -42,36 +50,26 @@ const Actions = ({ product }) => {
       <div className="full-space">
         <form onSubmit={handleSubmit}>
           <div className="row">
-            <select
-              className="row"
-              name="selectStorage"
-              placeholder="Almacenamiento"
-              onChange={(e) => setSelectedStorageCode(e.target.value)}
-              value={selectedStorageCode}
-            >
-              <option value="">Selecciona uno</option>
-              {product.options.storages.map(({ code, name }) => (
-                <option key={code} value={code}>
-                  {name}
-                </option>
-              ))}
-            </select>
+            {product?.options && (
+              <ProductOptionSelect
+                label="Almacenamiento"
+                name="selectStorage"
+                onChange={(newItem) => setSelectedStorageCode(newItem)}
+                selectedValue={selectedStorageCode}
+                list={product.options.storages}
+              ></ProductOptionSelect>
+            )}
           </div>
           <div className="row">
-            <select
-              className="row"
-              name="selectColor"
-              placeholder="Colores"
-              onChange={(e) => setSelectedColor(e.target.value)}
-              value={selectedColor}
-            >
-              <option value="">Selecciona uno</option>
-              {product.options.colors.map(({ code, name }) => (
-                <option key={code} value={code}>
-                  {name}
-                </option>
-              ))}
-            </select>
+            {product?.options && (
+              <ProductOptionSelect
+                label="Colores"
+                name="selectColor"
+                onChange={(newItem) => setSelectedColor(newItem)}
+                selectedValue={selectedColor}
+                list={product.options.colors}
+              ></ProductOptionSelect>
+            )}
           </div>
           <div className="full-space">
             <div className="row">
