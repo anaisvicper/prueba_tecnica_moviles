@@ -2,6 +2,7 @@ import { generatePath } from 'react-router';
 import { Link } from 'react-router-dom';
 import '../../App.css';
 import routes from '../../config/routes';
+import Image from '../ProductDetail/Image';
 
 const CURRENCY = '€';
 // const list: {
@@ -18,7 +19,7 @@ const Item = ({ item: { id, brand, model, price, imgUrl } }) => {
         className="product-list-item"
         to={generatePath(`/${routes.PRODUCT_DETAIL.path}`, { id })}
       >
-        <img src={imgUrl} />
+        <Image product={{ id, brand, model, imgUrl }} />
         <div>
           <span>{brand}</span>
           <span> · </span>
