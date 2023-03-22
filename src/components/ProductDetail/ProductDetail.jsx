@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import '../../App.css';
-import getProductDetail from '../../store/detail/api';
+import { getProductDetail } from '../../store/detail/api';
 import Loading from '../Loading';
+import Actions from './Actions';
 import Description from './Description';
 import Image from './Image';
 
@@ -28,10 +29,15 @@ const ProductDetail = () => {
 
   return product ? (
     <div className="product-detail">
-      <div>
+      <div className="product-detail-item">
         <Image product={product} />
       </div>
-      <Description product={product} />
+      <div className="product-detail-item">
+        <div>
+          <Description product={product} />
+          <Actions product={product} />
+        </div>
+      </div>
     </div>
   ) : (
     'Producto no encontrado'
