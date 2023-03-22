@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import TestProviders from '../../setupTests';
-import Header from './Header';
+import TestProviders from '../../../setupTests';
+import Header from '../Header';
 
 const BREAD_CRUMB_MOCK = 'BreadCrumb mock';
 const CART_MOCK = 'Cart mock';

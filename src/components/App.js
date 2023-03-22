@@ -2,7 +2,7 @@ import { Routes, Route, Outlet, Navigate } from 'react-router-dom';
 import './App.css';
 import Header from './Header/Header';
 import ProductDetail from './ProductDetail';
-import ProductsList from './ProductsList';
+import ProductList from './ProductList';
 import routes from '../config/routes';
 
 const AppBase = () => (
@@ -21,7 +21,7 @@ function App() {
         {/* Redirect to list */}
         <Route index element={<Navigate to={routes.PRODUCTS.path} />} />
         {/* Product list */}
-        <Route path={routes.PRODUCTS.path} element={<ProductsList />} />
+        <Route path={routes.PRODUCTS.path} element={<ProductList />} />
         {/* Product detail */}
         <Route path={routes.PRODUCT_DETAIL.path} element={<ProductDetail />} />
         {/* Redirect to list */}

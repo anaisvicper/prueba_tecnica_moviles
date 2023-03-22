@@ -800,4 +800,5 @@ const mockList = [
       'https://itx-frontend-test.onrender.com/images/AasKFs5EGbyAEIKkcHQcF.jpg',
   },
 ];
+
 export default mockList;
