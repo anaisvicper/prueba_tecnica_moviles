@@ -1,58 +1,43 @@
 import '../../App.css';
 
+/**
+ * Helps to ensure the same base styles are applying for each item.
+ * As well, allows to see each item in a unique line while coding.
+ * @param {{label: Node, value: Node}} param0
+ */
+const DescriptionItem = ({ label, value }) => (
+  <tr>
+    <td>{label}</td>
+    <td>{value}</td>
+  </tr>
+);
+
 const Description = ({ product }) => {
   return (
     <div className="product-detail-description">
       <table>
-        <tr>
-          <td>Marca</td>
-          <td>{product.brand}</td>
-        </tr>
-        <tr>
-          <td>Modelo</td>
-          <td>{product.model}</td>
-        </tr>
-        <tr>
-          <td>Precio</td>
-          <td>{product.price}</td>
-        </tr>
-        <tr>
-          <td>CPU</td>
-          <td>{product.cpu}</td>
-        </tr>
-        <tr>
-          <td>RAM</td>
-          <td>{product.ram}</td>
-        </tr>
-        <tr>
-          <td>Sistema operativo</td>
-          <td>{product.os}</td>
-        </tr>
-        <tr>
-          <td>Resolución de pantalla</td>
-          <td>{product.displayResolution}</td>
-        </tr>
-        <tr>
-          <td>Batería</td>
-          <td>{product.battery}</td>
-        </tr>
-        <tr>
-          <td>Cámaras</td>
-          <td>
+        <DescriptionItem label="Marca" value={product.brand} />
+        <DescriptionItem label="Modelo" value={product.model} />
+        <DescriptionItem label="Precio" value={product.price} />
+        <DescriptionItem label="CPU" value={product.cpu} />
+        <DescriptionItem label="RAM" value={product.ram} />
+        <DescriptionItem label="Sistema operativo" value={product.os} />
+        <DescriptionItem
+          label="Resolución de pantalla"
+          value={product.displayResolution}
+        />
+        <DescriptionItem label="Batería" value={product.battery} />
+        <DescriptionItem
+          label="Cámaras"
+          value={
             <ul>
               <li>{product.primaryCamera.map((feature) => ` ${feature} `)}</li>
               <li>{product.secondaryCmera.map((feature) => ` ${feature} `)}</li>
             </ul>
-          </td>
-        </tr>
-        <tr>
-          <td>Dimensiones</td>
-          <td>{product.dimentions}</td>
-        </tr>
-        <tr>
-          <td>Peso</td>
-          <td>{product.weight}</td>
-        </tr>
+          }
+        />
+        <DescriptionItem label="Dimensiones" value={product.dimentions} />
+        <DescriptionItem label="Peso" value={product.weight} />
       </table>
     </div>
   );
