@@ -38,6 +38,26 @@ const Description = ({ product }) => {
         />
         <DescriptionItem label="Dimensiones" value={product.dimentions} />
         <DescriptionItem label="Peso" value={product.weight} />
+        <DescriptionItem
+          label="Memoria interna"
+          value={
+            <ul>
+              {product.internalMemory.map((storage) => (
+                <li>{storage}</li>
+              ))}
+            </ul>
+          }
+        />
+        <DescriptionItem
+          label="Colores"
+          value={
+            <ul>
+              {product.colors.map((color) => (
+                <li>{color}</li>
+              ))}
+            </ul>
+          }
+        />
       </table>
     </div>
   );
