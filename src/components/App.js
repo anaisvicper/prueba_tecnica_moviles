@@ -7,9 +7,16 @@ import routes from '../config/routes';
 import ErrorBoundary from './ErrorBoundary';
 import Toast from './Toast';
 import ToastContextProvider from './ToastContext';
+import styled from '@emotion/styled';
+
+const StyledAppContainer = styled.div(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  height: '100vh',
+}));
 
 const AppBase = () => (
-  <div className="App">
+  <StyledAppContainer>
     <Header />
     <ErrorBoundary>
       <ToastContextProvider>
@@ -19,7 +26,7 @@ const AppBase = () => (
         <Toast />
       </ToastContextProvider>
     </ErrorBoundary>
-  </div>
+  </StyledAppContainer>
 );
 
 function App() {

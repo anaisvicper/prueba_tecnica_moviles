@@ -1,6 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { useParams } from 'react-router';
 import '../App.css';
+import './ProductDetail.css';
 import { getProductDetail } from '../../store/detail/detailSlice';
 import Loading from '../Loading';
 import Actions from './Actions';
@@ -8,6 +9,11 @@ import Description from './Description';
 import Image from './Image';
 import { useDispatch, useSelector } from 'react-redux';
 import { ToastContext } from '../ToastContext';
+import styled from '@emotion/styled';
+
+const StyledProductDetailItem = styled.div(() => ({
+  flexDirection: 'column',
+}));
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -23,6 +29,8 @@ const ProductDetail = () => {
       handleMessage(`Ha ocurrido un error ${error}`);
       handleSeverity(possibleSeverity.error);
     });
+    // We don't want this to update for each change in the Toast Provider
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, dispatch]);
 
   if (loading) {
@@ -31,15 +39,15 @@ const ProductDetail = () => {
 
   return product ? (
     <div className="product-detail">
-      <div className="product-detail-item">
+      <StyledProductDetailItem>
         <Image product={product} />
-      </div>
-      <div className="product-detail-item">
+      </StyledProductDetailItem>
+      <StyledProductDetailItem>
         <div>
           <Description product={product} />
           <Actions product={product} />
         </div>
-      </div>
+      </StyledProductDetailItem>
     </div>
   ) : (
     'Producto no encontrado'

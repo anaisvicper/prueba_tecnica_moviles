@@ -1,5 +1,14 @@
 import { Fragment } from 'react';
 import '../App.css';
+import styled from '@emotion/styled';
+
+const StyleDetailDescriptionTable = styled.table(() => ({
+  alignSelf: 'center',
+}));
+
+const StyleLabelTd = styled.td(() => ({
+  fontWeight: 'bold',
+}));
 
 /**
  * Helps to ensure the same base styles are applying for each item.
@@ -8,7 +17,7 @@ import '../App.css';
  */
 const DescriptionItem = ({ label, value }) => (
   <tr>
-    <td>{label}</td>
+    <StyleLabelTd>{label}</StyleLabelTd>
     <td>{value ? value : ' - '}</td>
   </tr>
 );
@@ -30,7 +39,7 @@ const DescriptionArrayItem = ({ Wrapper, value, ValueView }) =>
 
 const Description = ({ product }) => {
   return (
-    <table className="product-detail-description-table">
+    <StyleDetailDescriptionTable>
       <tbody>
         <DescriptionItem label="Marca" value={product.brand} />
         <DescriptionItem label="Modelo" value={product.model} />
@@ -83,7 +92,7 @@ const Description = ({ product }) => {
           }
         />
       </tbody>
-    </table>
+    </StyleDetailDescriptionTable>
   );
 };
 

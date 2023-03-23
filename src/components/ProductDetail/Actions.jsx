@@ -6,8 +6,30 @@ import { addProductToCart } from '../../store/detail/detailSlice';
 import ProductOptionSelect from './ProductOptionSelect';
 import { useDispatch } from 'react-redux';
 import { ToastContext } from '../ToastContext';
+import styled from '@emotion/styled';
+import Price from '../Price';
 
-const CURRENCY = '€';
+const StyledButton = styled('button')(() => ({
+  border: '2px solid #282c34',
+  borderRadius: '10%',
+  backgroundColor: 'lightseagreen',
+  color: 'white',
+  '&:hover': {
+    boxShadow: '3px 3px 10px 5px #282c34',
+  },
+}));
+const StyledProductDetailActions = styled('div')(() => ({
+  display: 'flex',
+  flexDirection: 'row',
+  flexGrow: '1',
+  justifyContent: 'flex-start',
+  alignItems: 'flex-start',
+  paddingBottom: '16px',
+}));
+const StyledProductDetailActionsGoto = styled('div')(() => ({
+  '& > a': { color: 'lightseagreen', textDecoration: 'underline' },
+}));
+
 const Actions = ({ product }) => {
   const [selectedStorageCode, setSelectedStorageCode] = useState();
   const [selectedColor, setSelectedColor] = useState();
@@ -54,7 +76,7 @@ const Actions = ({ product }) => {
   };
 
   return (
-    <div className="product-detail-actions">
+    <StyledProductDetailActions>
       <div className="full-space">
         <form onSubmit={handleSubmit}>
           <div className="row">
@@ -81,20 +103,16 @@ const Actions = ({ product }) => {
           </div>
           <div className="full-space">
             <div className="row">
-              <div className="price">
-                {product.price} {CURRENCY}
-              </div>
-              <button type="submit" className="action">
-                Añadir al carrito
-              </button>
+              <Price price={product.price} />
+              <StyledButton type="submit">Añadir al carrito</StyledButton>
             </div>
           </div>
         </form>
-        <div className="product-detail-actions-goto">
+        <StyledProductDetailActionsGoto>
           <NavLink to={`/${routes.PRODUCTS.path}`}>Volver al listado</NavLink>
-        </div>
+        </StyledProductDetailActionsGoto>
       </div>
-    </div>
+    </StyledProductDetailActions>
   );
 };
 
