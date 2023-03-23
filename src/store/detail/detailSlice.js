@@ -4,7 +4,7 @@ import {
   getProductDetail as getProductDetailApi,
 } from './api';
 
-const initialState = {
+export const detailInitialState = {
   isLoading: false,
   error: null,
   productDetail: {},
@@ -14,7 +14,7 @@ const initialState = {
 
 export const detailSlice = createSlice({
   name: 'productDetail',
-  initialState,
+  initialState: detailInitialState,
   reducers: {
     startRequest: (state) => {
       state.isLoading = true;
@@ -32,7 +32,7 @@ export const detailSlice = createSlice({
       state.countInApi = action.payload.count;
     },
     resetDetail: (state) => {
-      state = initialState;
+      state = detailInitialState;
     },
   },
 });
