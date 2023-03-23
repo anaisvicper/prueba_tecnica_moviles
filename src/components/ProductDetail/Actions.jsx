@@ -76,7 +76,9 @@ const Actions = ({ product }) => {
               <div className="price">
                 {product.price} {CURRENCY}
               </div>
-              <button type="submit">Añadir al carrito</button>
+              <button type="submit" className="action">
+                Añadir al carrito
+              </button>
             </div>
           </div>
         </form>

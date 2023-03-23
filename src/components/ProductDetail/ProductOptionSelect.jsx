@@ -13,8 +13,9 @@ const ProductOptionSelect = ({
     placeholder={label}
     onChange={(e) => onChange(e.target.value)}
     value={selectedValue}
+    required
   >
-    <option value="">Selecciona uno</option>
+    <option value="">Selecciona {label.toLowerCase()}</option>
     {list?.map(({ code, name }) => (
       <option key={code} value={code}>
         {name}
