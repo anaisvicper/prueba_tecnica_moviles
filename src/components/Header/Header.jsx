@@ -1,7 +1,7 @@
 import logo from '../../images/logo.png';
-import '../../App.css';
-import BreadCrumb from '../BreadCrumb';
-import Cart from '../Cart';
+import '../App.css';
+import BreadCrumb from './BreadCrumb';
+import Cart from './Cart';
 import routes from '../../config/routes';
 import { NavLink } from 'react-router-dom';
 

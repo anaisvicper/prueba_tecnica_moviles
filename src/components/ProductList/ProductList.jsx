@@ -1,9 +1,9 @@
-import '../../App.css';
+import '../App.css';
 import Item from './Item';
 import ProductListContextProvider, {
   ProductListContext,
-} from '../ProductListContext';
-import Search from '../Search';
+} from './ProductListContext';
+import Search from './Search';
 import Loading from '../Loading';
 import { useContext, useEffect, useState } from 'react';
 import getProductListApi from '../../store/list/api';

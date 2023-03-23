@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import '../../App.css';
+import '../App.css';
 import { getProductDetail } from '../../store/detail/api';
 import Loading from '../Loading';
 import Actions from './Actions';

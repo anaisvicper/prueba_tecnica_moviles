@@ -1,6 +1,6 @@
 import { generatePath } from 'react-router';
 import { Link } from 'react-router-dom';
-import '../../App.css';
+import '../App.css';
 import routes from '../../config/routes';
 import Image from '../ProductDetail/Image';
 

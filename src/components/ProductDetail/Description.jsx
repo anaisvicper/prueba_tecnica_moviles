@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import '../../App.css';
+import '../App.css';
 
 /**
  * Helps to ensure the same base styles are applying for each item.
