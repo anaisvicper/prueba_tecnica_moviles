@@ -1,16 +1,19 @@
 import '../App.css';
 import routes from '../../config/routes';
 import { NavLink } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { addProductToCart } from '../../store/detail/detailSlice';
 import ProductOptionSelect from './ProductOptionSelect';
 import { useDispatch } from 'react-redux';
+import { ToastContext } from '../ToastContext';
 
 const CURRENCY = '€';
 const Actions = ({ product }) => {
   const [selectedStorageCode, setSelectedStorageCode] = useState();
   const [selectedColor, setSelectedColor] = useState();
   const dispatch = useDispatch();
+  const { handleMessage, handleSeverity, possibleSeverity } =
+    useContext(ToastContext);
 
   useEffect(() => {
     const options = product.options;
@@ -36,11 +39,16 @@ const Actions = ({ product }) => {
       };
       dispatch(addProductToCart(data))
         .then(({ count }) => {
-          console.log('Añadido al carrito', data);
-          console.log('Elementos en carrito', count);
+          handleMessage(
+            `Añadido al carrito. ${
+              !!count ? `Elementos en carrito ${count}` : ''
+            }`
+          );
+          handleSeverity(possibleSeverity.success);
         })
         .catch((error) => {
-          console.log(`No se ha podido añadir al carrito ${error}`);
+          handleMessage(`No se ha podido añadir al carrito ${error}`);
+          handleSeverity(possibleSeverity.error);
         });
     }
   };

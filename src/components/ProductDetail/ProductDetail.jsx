@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { useParams } from 'react-router';
 import '../App.css';
 import { getProductDetail } from '../../store/detail/detailSlice';
@@ -7,6 +7,7 @@ import Actions from './Actions';
 import Description from './Description';
 import Image from './Image';
 import { useDispatch, useSelector } from 'react-redux';
+import { ToastContext } from '../ToastContext';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -14,9 +15,14 @@ const ProductDetail = () => {
     (state) => state.product.detail
   );
   const dispatch = useDispatch();
+  const { handleMessage, handleSeverity, possibleSeverity } =
+    useContext(ToastContext);
 
   useEffect(() => {
-    dispatch(getProductDetail({ id }));
+    dispatch(getProductDetail({ id })).catch((error) => {
+      handleMessage(`Ha ocurrido un error ${error}`);
+      handleSeverity(possibleSeverity.error);
+    });
   }, [id, dispatch]);
 
   if (loading) {
