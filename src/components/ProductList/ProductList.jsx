@@ -8,15 +8,21 @@ import Loading from '../Loading';
 import { useContext, useEffect } from 'react';
 import { getProductList } from '../../store/list/listSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { ToastContext } from '../ToastContext';
 
 const ProductListContainer = () => {
   const { isLoading: loading, productList: list } = useSelector(
     (state) => state.product.list
   );
   const dispatch = useDispatch();
+  const { handleMessage, handleSeverity, possibleSeverity } =
+    useContext(ToastContext);
 
   useEffect(() => {
-    dispatch(getProductList());
+    dispatch(getProductList()).catch((error) => {
+      handleMessage(`Ha ocurrido un error ${error}`);
+      handleSeverity(possibleSeverity.error);
+    });
   }, [dispatch]);
 
   if (loading) {

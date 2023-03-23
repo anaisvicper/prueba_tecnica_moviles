@@ -5,14 +5,19 @@ import ProductDetail from './ProductDetail';
 import ProductList from './ProductList';
 import routes from '../config/routes';
 import ErrorBoundary from './ErrorBoundary';
+import Toast from './Toast';
+import ToastContextProvider from './ToastContext';
 
 const AppBase = () => (
   <div className="App">
     <Header />
     <ErrorBoundary>
-      <div className="full-space">
-        <Outlet />
-      </div>
+      <ToastContextProvider>
+        <div className="full-space">
+          <Outlet />
+        </div>
+        <Toast />
+      </ToastContextProvider>
     </ErrorBoundary>
   </div>
 );
