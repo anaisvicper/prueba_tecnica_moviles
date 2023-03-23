@@ -1,27 +1,23 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router';
 import '../App.css';
-import { getProductDetail } from '../../store/detail/api';
+import { getProductDetail } from '../../store/detail/detailSlice';
 import Loading from '../Loading';
 import Actions from './Actions';
 import Description from './Description';
 import Image from './Image';
+import { useDispatch, useSelector } from 'react-redux';
 
 const ProductDetail = () => {
-  const [product, setProduct] = useState(undefined);
-  const [loading, setLoading] = useState(true);
   const { id } = useParams();
+  const { isLoading: loading, productDetail: product } = useSelector(
+    (state) => state.product.detail
+  );
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getProductDetail({ id })
-      .then((productItem) => {
-        setProduct(productItem);
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
-  }, [id]);
+    dispatch(getProductDetail({ id }));
+  }, [id, dispatch]);
 
   if (loading) {
     return <Loading />;

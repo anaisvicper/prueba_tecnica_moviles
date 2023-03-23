@@ -6,12 +6,26 @@ import { act } from 'react-dom/test-utils';
 
 const DESCRIPTION_MOCK = 'Description mock';
 const ACTIONS_MOCK = 'Actions mock';
-const getProductDetailMock = () => Promise.resolve(productMock);
+const getProductDetailMock = () => () => Promise.resolve(productMock);
+const useSelectorMock = (callback) =>
+  callback({
+    product: {
+      detail: {
+        isLoading: false,
+        productDetail: productMock,
+      },
+    },
+  });
 
 jest.mock('../Description', () => () => <div>{DESCRIPTION_MOCK}</div>);
 jest.mock('../Actions', () => () => <div>{ACTIONS_MOCK}</div>);
 jest.mock('../../../store/detail/api', () => ({
+  ...jest.requireActual('../../../store/detail/api'),
   getProductDetail: getProductDetailMock,
+}));
+jest.mock('react-redux', () => ({
+  ...jest.requireActual('react-redux'),
+  useSelector: useSelectorMock,
 }));
 
 describe('ProductDetail tests', () => {

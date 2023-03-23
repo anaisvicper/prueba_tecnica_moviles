@@ -3,11 +3,15 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
+import { Provider } from 'react-redux';
 
 import { BrowserRouter } from 'react-router-dom';
+import store from './store/store';
 
 const TestProviders = ({ children }) => (
-  <BrowserRouter>{children}</BrowserRouter>
+  <Provider store={store}>
+    <BrowserRouter>{children}</BrowserRouter>
+  </Provider>
 );
 
 export default TestProviders;

@@ -6,12 +6,27 @@ import { act } from 'react-dom/test-utils';
 
 const SEARCH_MOCK = 'Search mock';
 const ITEM_MOCK = 'Item mock';
-const getProductListMock = () => Promise.resolve(list);
+const getProductListMock = (dispatch) => () => Promise.resolve(list);
+const useSelectorMock = (callback) =>
+  callback({
+    product: {
+      list: {
+        isLoading: false,
+        productList: list,
+      },
+    },
+  });
 
 jest.mock('../Search', () => () => <div>{SEARCH_MOCK}</div>);
 jest.mock('../Item', () => () => <div>{ITEM_MOCK}</div>);
-jest.mock('../../../store/list/api', () => getProductListMock);
-
+jest.mock('../../../store/list/api', () => ({
+  ...jest.requireActual('../../../store/detail/api'),
+  getProductList: getProductListMock,
+}));
+jest.mock('react-redux', () => ({
+  ...jest.requireActual('react-redux'),
+  useSelector: useSelectorMock,
+}));
 describe('ProductList tests', () => {
   test('shows search', async () => {
     await act(async () => render(<ProductList />, { wrapper: TestProviders }));

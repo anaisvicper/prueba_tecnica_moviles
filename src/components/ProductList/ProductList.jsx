@@ -5,32 +5,19 @@ import ProductListContextProvider, {
 } from './ProductListContext';
 import Search from './Search';
 import Loading from '../Loading';
-import { useContext, useEffect, useState } from 'react';
-import getProductListApi from '../../store/list/api';
-
-const getProductList = async () => {
-  try {
-    const productList = await getProductListApi();
-    return productList;
-  } catch (error) {
-    console.log(error);
-  }
-};
+import { useContext, useEffect } from 'react';
+import { getProductList } from '../../store/list/listSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const ProductListContainer = () => {
-  const [list, setList] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { isLoading: loading, productList: list } = useSelector(
+    (state) => state.product.list
+  );
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getProductList()
-      .then((productList) => {
-        setList(productList);
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
-  }, []);
+    dispatch(getProductList());
+  }, [dispatch]);
 
   if (loading) {
     return <Loading />;
