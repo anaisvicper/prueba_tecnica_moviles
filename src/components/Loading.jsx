@@ -2,9 +2,13 @@ import logoReact from '../images/logo_react.svg';
 import '../App.css';
 
 const Loading = () => (
-  <div className="full-space">
-    <img src={logoReact} className="loading" alt="loading" />
-    <div>Cargando...</div>
+  <div className="loading-container">
+    <div className="loading">
+      <div>
+        <img src={logoReact} className="loading-logo" alt="loading" />
+      </div>
+      <div>Cargando...</div>
+    </div>
   </div>
 );
 
