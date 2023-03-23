@@ -1,7 +1,7 @@
 import getProductListApi from '../../store/list/api';
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+export const listInitialState = {
   isLoading: false,
   error: null,
   productList: [],
@@ -9,7 +9,7 @@ const initialState = {
 
 export const listSlice = createSlice({
   name: 'productList',
-  initialState,
+  initialState: listInitialState,
   reducers: {
     startRequest: (state) => {
       state.isLoading = true;
@@ -23,7 +23,7 @@ export const listSlice = createSlice({
       state.isLoading = false;
     },
     resetList: (state) => {
-      state = initialState;
+      state = listInitialState;
     },
   },
 });

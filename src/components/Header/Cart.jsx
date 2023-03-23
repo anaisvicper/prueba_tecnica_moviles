@@ -9,7 +9,7 @@ const StyledCart = styled.div(() => ({
   padding: '0px 30px',
 }));
 const Cart = () => {
-  const { countInApi } = useSelector((state) => state.product.detail);
+  const { countInApi } = useSelector((state) => state.product.detail) || -1;
   // Move x depending on the number of digits. Start in 45%
   const startX = countInApi < 10 ? 45 : 45 - `${countInApi}`.length * 5;
   return (
