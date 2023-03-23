@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { ToastContext } from './ToastContext';
 import { Alert, Snackbar } from '@mui/material';
 
-const Toast = ({}) => {
+const Toast = () => {
   const { message, severity, handleReset } = useContext(ToastContext);
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {

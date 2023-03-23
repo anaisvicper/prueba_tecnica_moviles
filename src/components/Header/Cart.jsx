@@ -1,13 +1,19 @@
 import '../App.css';
 
 import { useSelector } from 'react-redux';
+import styled from '@emotion/styled';
 
+const StyledCart = styled.div(() => ({
+  height: '35px',
+  width: '35px',
+  padding: '0px 30px',
+}));
 const Cart = () => {
   const { countInApi } = useSelector((state) => state.product.detail);
   // Move x depending on the number of digits. Start in 45%
   const startX = countInApi < 10 ? 45 : 45 - `${countInApi}`.length * 5;
   return (
-    <div className="cart">
+    <StyledCart>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
         <path
           fill="white"
@@ -23,7 +29,7 @@ const Cart = () => {
           {countInApi}
         </text>
       </svg>
-    </div>
+    </StyledCart>
   );
 };
 
