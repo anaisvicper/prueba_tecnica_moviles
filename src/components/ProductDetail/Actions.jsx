@@ -15,7 +15,7 @@ const Actions = ({ product }) => {
     if (product.options.colors.length === 1) {
       setSelectedColor(product.options.colors[0].code);
     }
-  }, []);
+  }, [product.options.storages, product.options.colors]);
 
   const handleSubmit = (event) => {
     event.preventDefault();

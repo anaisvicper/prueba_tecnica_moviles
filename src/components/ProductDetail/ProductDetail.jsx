@@ -21,7 +21,7 @@ const ProductDetail = () => {
       .catch(() => {
         setLoading(false);
       });
-  }, []);
+  }, [id]);
 
   if (loading) {
     return <Loading />;

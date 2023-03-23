@@ -27,4 +27,5 @@ export const addProductToCart = ({ id, colorCode, storageCode }) => {
     });
 };
 
-export default { getProductDetail, addProductToCart };
+const api = { getProductDetail, addProductToCart };
+export default api;

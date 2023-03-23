@@ -1,2 +1,5 @@
 export const BASE_URL = 'https://itx-frontend-test.onrender.com';
-export default { BASE_URL };
+
+const apiConfig = { BASE_URL };
+
+export default apiConfig;
